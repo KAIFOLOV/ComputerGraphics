@@ -74,12 +74,12 @@ Matrix Pencil::vertices() const
     return _vertices;
 }
 
-QVector<QVector<uint32_t>> Pencil::edges() const
+QVector<QPointF> Pencil::edges() const
 {
     return _edges;
 }
 
-void Pencil::setEdges(const QVector<QVector<uint32_t>> &newEdges)
+void Pencil::setEdges(const QVector<QPointF> &newEdges)
 {
     _edges = newEdges;
 }

@@ -20,7 +20,7 @@ set(PROJECT_SOURCES
     Pencil.h Pencil.cpp
     camera.h camera.cpp
     matrix.h matrix.cpp
-
+    DataModel.h DataModel.cpp
 )
 
 # Добавляем исполняемый файл

@@ -16,12 +16,12 @@ public:
 
     Matrix vertices() const;
 
-    QVector<QVector<uint32_t>> edges() const;
-    void setEdges(const QVector<QVector<uint32_t>> &newEdges);
+    QVector<QPointF> edges() const;
+    void setEdges(const QVector<QPointF> &newEdges);
 
 private:
     Matrix _vertices;
-    QVector<QVector<uint32_t>> _edges;
+    QVector<QPointF> _edges;
 };
 
 #endif // PENCIL_H
