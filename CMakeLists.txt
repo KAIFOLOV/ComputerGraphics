@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
     camera.h camera.cpp
     matrix.h matrix.cpp
     DataModel.h DataModel.cpp
+    resources.qrc
 )
 
 # Добавляем исполняемый файл

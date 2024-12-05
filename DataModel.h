@@ -3,23 +3,29 @@
 
 #include <QObject>
 #include <QPointF>
+#include <QVector>
 
 class DataModel : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QVector<QPointF> vertices READ vertices NOTIFY verticesChanged)
+    Q_PROPERTY(QVector<QPointF> edges READ edges NOTIFY edgesChanged)
+
 public:
     explicit DataModel(QObject *parent = nullptr);
 
-    Q_INVOKABLE QVector<QPointF> vertices() const;
+    QVector<QPointF> vertices() const { return _vertices; }
     void setVertices(const QVector<QPointF> &newVertices);
 
-    Q_INVOKABLE QVector<QPointF> edges() const;
+    QVector<QPointF> edges() const { return _edges; }
     void setEdges(const QVector<QPointF> &newEdges);
 
+signals:
+    void verticesChanged();
+    void edgesChanged();
+
 private:
-    /// Массив вершин
     QVector<QPointF> _vertices;
-    /// Массив рёбер
     QVector<QPointF> _edges;
 };
 

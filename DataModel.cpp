@@ -1,25 +1,21 @@
 #include "DataModel.h"
 
 DataModel::DataModel(QObject *parent)
-    : QObject{parent}
+    : QObject(parent)
 {}
-
-QVector<QPointF> DataModel::vertices() const
-{
-    return _vertices;
-}
 
 void DataModel::setVertices(const QVector<QPointF> &newVertices)
 {
-    _vertices = newVertices;
-}
-
-QVector<QPointF> DataModel::edges() const
-{
-    return _edges;
+    if (_vertices != newVertices) {
+        _vertices = newVertices;
+        emit verticesChanged();
+    }
 }
 
 void DataModel::setEdges(const QVector<QPointF> &newEdges)
 {
-    _edges = newEdges;
+    if (_edges != newEdges) {
+        _edges = newEdges;
+        emit edgesChanged();
+    }
 }
