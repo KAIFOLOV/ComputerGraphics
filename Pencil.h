@@ -1,42 +1,27 @@
 #ifndef PENCIL_H
 #define PENCIL_H
 
+#include "matrix.h"
+
 #include <QObject>
+#include <QVector3D>
 
-struct Vertice
+class Pencil
 {
-    Vertice(const float x, const float y, const float z) : _x(x), _y(y), _z(z)
-    {}
-
-    float _x;
-    float _y;
-    float _z;
-};
-
-struct Edge
-{
-    Edge(const int vertice1, const int vertice2) : _vertice1(vertice1), _vertice2(vertice2)
-    {}
-
-    int _vertice1;
-    int _vertice2;
-};
-
-class Pencil : public QObject
-{
-    Q_OBJECT
 public:
-    explicit Pencil(QObject *parent = nullptr);
+    explicit Pencil(const QVector<QVector3D> &vertices);
 
-    QVector<Vertice> vertices() const;
+    void Translate(const float x, const float y, const float z);
+    void Rotate(float roll, float pitch, float yaw);
 
-    QVector<Edge> edges() const;
+    Matrix vertices() const;
+
+    QVector<QVector<uint32_t>> edges() const;
+    void setEdges(const QVector<QVector<uint32_t>> &newEdges);
 
 private:
-    QVector<Vertice> _vertices;
-    QVector<Edge> _edges;
-
-    void initializePencil();
+    Matrix _vertices;
+    QVector<QVector<uint32_t>> _edges;
 };
 
 #endif // PENCIL_H

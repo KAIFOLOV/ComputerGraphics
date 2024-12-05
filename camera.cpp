@@ -3,20 +3,42 @@
 Camera::Camera() : _view(4, 4), _projection(4, 4)
 {}
 
+const Matrix &Camera::view()
+{
+    return _view;
+}
+
+const Matrix &Camera::projection()
+{
+    return _projection;
+}
+
 void Camera::LookAt(const float x, const float y, const float z)
 {
     _x = x;
     _y = y;
     _z = z;
 
-    Matrix T { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { -x, -y, -z, 1 } };
+    Matrix T {
+        { 1, 0, 0, 0 },
+        { 0, 1, 0, 0 },
+        { 0, 0, 1, 0 },
+        { -x, -y, -z, 1 },
+    };
 
-    Matrix S { { -1.f, 0.f, 0.f, 0.f },
-               { 0., 1.f, 0.f, 0.f },
-               { 0.f, 0.f, 1.f, 0.f },
-               { 0.f, 0.f, 0.f, 1.f } };
+    Matrix S {
+        { -1, 0, 0, 0 },
+        { 0, 1, 0, 0 },
+        { 0, 0, 1, 0 },
+        { 0, 0, 0, 1 },
+    };
 
-    Matrix R_90 { { 1, 0, 0, 0 }, { 0, 0, -1, 0 }, { 0, 1, 0, 0 }, { 0, 0, 0, 1 } };
+    Matrix R_90 {
+        { 1, 0, 0, 0 },
+        { 0, 0, -1, 0 },
+        { 0, 1, 0, 0 },
+        { 0, 0, 0, 1 },
+    };
 
     float s, c;
     float d = sqrt(x * x + y * y);
