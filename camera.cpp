@@ -3,6 +3,21 @@
 Camera::Camera() : _view(4, 4), _projection(4, 4)
 {}
 
+const float Camera::x()
+{
+    return _x;
+}
+
+const float Camera::y()
+{
+    return _y;
+}
+
+const float Camera::z()
+{
+    return _z;
+}
+
 const Matrix &Camera::view()
 {
     return _view;

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/qml">
-        <file>qml/main.qml</file>
+        <file>qml/lab2.qml</file>
+        <file>qml/lab3.qml</file>
     </qresource>
 </RCC>

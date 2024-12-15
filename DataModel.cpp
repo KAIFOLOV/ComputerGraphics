@@ -19,3 +19,13 @@ void DataModel::setEdges(const QVector<QPointF> &newEdges)
         emit edgesChanged();
     }
 }
+
+QVector<QVector<QPointF> > DataModel::faces() const { return _faces; }
+
+void DataModel::setFaces(const QVector<QVector<QPointF> > &newFaces)
+{
+    if (_faces != newFaces) {
+        _faces = newFaces;
+        emit facesChanged();
+    }
+}

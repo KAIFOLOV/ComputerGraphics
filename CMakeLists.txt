@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(ComputerGraphics2 VERSION 0.1 LANGUAGES CXX)
+project(ComputerGraphics VERSION 0.1 LANGUAGES CXX)
 
 # Настройки проекта
 set(CMAKE_CXX_STANDARD 17)
@@ -14,9 +14,8 @@ set(CMAKE_AUTORCC ON)
 # Найдем необходимые модули Qt6
 find_package(Qt6 REQUIRED COMPONENTS Core Quick Gui Qml Widgets)
 
-# Указываем исходники проекта
-set(PROJECT_SOURCES
-    main.cpp
+# Указываем общий набор исходников
+set(COMMON_SOURCES
     Pencil.h Pencil.cpp
     camera.h camera.cpp
     matrix.h matrix.cpp
@@ -24,27 +23,32 @@ set(PROJECT_SOURCES
     resources.qrc
 )
 
-# Добавляем исполняемый файл
-qt_add_executable(ComputerGraphics2
-    ${PROJECT_SOURCES}
-)
+foreach(_target lab2 lab3)
+    add_executable(${_target} "${_target}.cpp")
 
-# Подключаем библиотеки Qt6
-target_link_libraries(ComputerGraphics2
-    PRIVATE Qt6::Core
-    PRIVATE Qt6::Quick
-    PRIVATE Qt6::Gui
-    PRIVATE Qt6::Qml
-    PRIVATE Qt6::Widgets
-)
+    target_sources(${_target} PRIVATE
+        ${COMMON_SOURCES}
+    )
 
-# Указываем каталог для QML
-set_target_properties(ComputerGraphics2 PROPERTIES
+if(_target STREQUAL "lab2")
+    target_sources(${_target} PRIVATE)
+
+elseif(_target STREQUAL "lab3")
+    target_sources(${_target} PRIVATE
+    Facets.h Facets.cpp
+)
+endif()
+
+target_link_libraries(${_target}
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Quick
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Qml
+    Qt${QT_VERSION_MAJOR}::Widgets)
+
+set_target_properties(${_target} PROPERTIES
     QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/qml"
     QML2_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/qml"
 )
 
-# Устанавливаем файлы приложения
-install(TARGETS ComputerGraphics2
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+endforeach()

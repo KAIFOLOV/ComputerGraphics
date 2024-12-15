@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
 
     QVector<QPointF> tmpVerticle;
     auto matrix = pencil->vertices() * camera->view() * camera->projection();
+
     for (int i = 0; i < matrix.size(); i++) {
         tmpVerticle.push_back({ matrix[i][0], matrix[i][1] });
     }
@@ -94,7 +95,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("dataModel", model);
-    engine.load(QUrl(QStringLiteral("qrc:/qml/qml/main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/qml/qml/lab2.qml")));
 
     if (engine.rootObjects().isEmpty())
         return -1;
