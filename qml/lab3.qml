@@ -13,7 +13,6 @@ ApplicationWindow {
 
         property int highlightedEdge: 0
 
-        // Массив цветов для граней
         property var colors: [
             "rgba(255, 0, 0, 0.3)",   // Красный
             "rgba(0, 255, 0, 0.3)",   // Зеленый
@@ -38,7 +37,6 @@ ApplicationWindow {
                 }
                 ctx.closePath();
 
-                // Устанавливаем цвет из массива
                 ctx.fillStyle = colors[i % colors.length];
                 ctx.fill();
 

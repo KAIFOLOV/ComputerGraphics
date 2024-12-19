@@ -15,14 +15,22 @@ class DataModel : public QObject
 public:
     explicit DataModel(QObject *parent = nullptr);
 
-    QVector<QPointF> vertices() const { return _vertices; }
+    QVector<QPointF> vertices() const
+    {
+        return _vertices;
+    }
     void setVertices(const QVector<QPointF> &newVertices);
 
-    QVector<QPointF> edges() const { return _edges; }
+    QVector<QPointF> edges() const
+    {
+        return _edges;
+    }
     void setEdges(const QVector<QPointF> &newEdges);
 
     QVector<QVector<QPointF>> faces() const;
     void setFaces(const QVector<QVector<QPointF>> &newFaces);
+
+    void updateData(const QVector<QVector<float>> &vertices, int steps);
 
 signals:
     void verticesChanged();

@@ -11,6 +11,10 @@ public:
 
     void SetAngles(const float roll, const float pitch);
 
+    Matrix vertices() const;
+
+    static int steps();
+
 private:
     const Matrix Scale(const Matrix &vertices);
 

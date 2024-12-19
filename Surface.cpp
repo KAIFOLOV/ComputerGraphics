@@ -88,5 +88,15 @@ const Matrix Surface::Scale(const Matrix &vertices)
                  { 0, k, 0, 0 },
                  { 0, 0, 0, 0 },
                  { 0, 0, 0, 1 },
-             };
+               };
+}
+
+int Surface::steps()
+{
+    return _steps;
+}
+
+Matrix Surface::vertices() const
+{
+    return _vertices;
 }
