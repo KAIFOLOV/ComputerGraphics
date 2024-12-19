@@ -66,9 +66,10 @@ void Surface::SetAngles(float roll, float pitch)
     _rotation = R_y * R_x;
 }
 
-const Matrix Surface::Scale(const Matrix &vertices)
+const Matrix Surface::Scale()
 {
-    Matrix corners = _corners * _rotation;
+    const Matrix vertices = _vertices * _rotation;
+    const Matrix corners = _corners * _rotation;
 
     float norm_x = abs((*std::max_element(corners.begin(), corners.end(),
                                           [](const QVector<float> &a, const QVector<float> &b) {
@@ -80,7 +81,7 @@ const Matrix Surface::Scale(const Matrix &vertices)
                                               return abs(a[1]) < abs(b[1]);
                                           }))[1]);
 
-    float k = std::min(600 / 2 / norm_x, 400 / 2 / norm_y) - 1.0f;
+    float k = std::min(800 / 2 / norm_x, 600 / 2 / norm_y) - 1.0f;
 
     return vertices
            * Matrix {
@@ -88,7 +89,7 @@ const Matrix Surface::Scale(const Matrix &vertices)
                  { 0, k, 0, 0 },
                  { 0, 0, 0, 0 },
                  { 0, 0, 0, 1 },
-               };
+             };
 }
 
 int Surface::steps()

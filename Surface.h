@@ -9,6 +9,8 @@ public:
     Surface(
      float x_min, float x_max, float z_min, float z_max, float (*equation)(float x, float z));
 
+    const Matrix Scale();
+
     void SetAngles(const float roll, const float pitch);
 
     Matrix vertices() const;
@@ -16,9 +18,7 @@ public:
     static int steps();
 
 private:
-    const Matrix Scale(const Matrix &vertices);
-
-    static constexpr int _steps = 50;
+    static constexpr int _steps = 10;
 
     Matrix _corners;
     Matrix _rotation;

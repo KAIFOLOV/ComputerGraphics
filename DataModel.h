@@ -30,8 +30,6 @@ public:
     QVector<QVector<QPointF>> faces() const;
     void setFaces(const QVector<QVector<QPointF>> &newFaces);
 
-    void updateData(const QVector<QVector<float>> &vertices, int steps);
-
 signals:
     void verticesChanged();
     void edgesChanged();

@@ -16,10 +16,13 @@ ApplicationWindow {
             ctx.clearRect(0, 0, width, height);
 
             // Рисуем ребра
+
+            console.log(dataModel.edges.length)
+
             for (var i = 0; i < dataModel.edges.length; i++) {
                 var edge = dataModel.edges[i];
-                var start = dataModel.vertices[edge.first];
-                var end = dataModel.vertices[edge.second];
+                var start = dataModel.vertices[edge.x];
+                var end = dataModel.vertices[edge.y];
 
                 ctx.strokeStyle = "black";
                 ctx.lineWidth = 2;
@@ -42,8 +45,8 @@ ApplicationWindow {
 
         Connections {
             target: dataModel
-            onVerticesChanged: requestPaint()
-            onEdgesChanged: requestPaint()
+            onVerticesChanged: canvas.requestPaint()
+            onEdgesChanged: canvas.requestPaint()
         }
 
         Component.onCompleted: requestPaint()
