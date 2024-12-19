@@ -13,6 +13,16 @@ ApplicationWindow {
 
         property int highlightedEdge: 0
 
+        // Массив цветов для граней
+        property var colors: [
+            "rgba(255, 0, 0, 0.3)",   // Красный
+            "rgba(0, 255, 0, 0.3)",   // Зеленый
+            "rgba(0, 0, 255, 0.3)",   // Синий
+            "rgba(255, 255, 0, 0.3)", // Желтый
+            "rgba(0, 255, 255, 0.3)", // Голубой
+            "rgba(255, 0, 255, 0.3)"  // Фиолетовый
+        ]
+
         onPaint: {
             var ctx = getContext("2d");
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -28,7 +38,8 @@ ApplicationWindow {
                 }
                 ctx.closePath();
 
-                ctx.fillStyle = "rgba(0, 0, 255, 0.3)";
+                // Устанавливаем цвет из массива
+                ctx.fillStyle = colors[i % colors.length];
                 ctx.fill();
 
                 ctx.strokeStyle = "black";

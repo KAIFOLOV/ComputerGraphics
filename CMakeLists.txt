@@ -2,28 +2,24 @@ cmake_minimum_required(VERSION 3.14)
 
 project(ComputerGraphics VERSION 0.1 LANGUAGES CXX)
 
-# Настройки проекта
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Включаем автоматическую обработку Qt-файлов
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-# Найдем необходимые модули Qt6
 find_package(Qt6 REQUIRED COMPONENTS Core Quick Gui Qml Widgets)
 
-# Указываем общий набор исходников
+# общий набор исходников
 set(COMMON_SOURCES
-    Pencil.h Pencil.cpp
     camera.h camera.cpp
     matrix.h matrix.cpp
     DataModel.h DataModel.cpp
     resources.qrc
 )
 
-foreach(_target lab2 lab3)
+foreach(_target lab2 lab3 lab4)
     add_executable(${_target} "${_target}.cpp")
 
     target_sources(${_target} PRIVATE
@@ -31,11 +27,19 @@ foreach(_target lab2 lab3)
     )
 
 if(_target STREQUAL "lab2")
-    target_sources(${_target} PRIVATE)
+    target_sources(${_target} PRIVATE
+        Pencil.h Pencil.cpp
+    )
 
 elseif(_target STREQUAL "lab3")
     target_sources(${_target} PRIVATE
-    Facets.h Facets.cpp
+        Pencil.h Pencil.cpp
+        Facets.h Facets.cpp
+)
+
+elseif(_target STREQUAL "lab4")
+    target_sources(${_target} PRIVATE
+        Surface.h Surface.cpp
 )
 endif()
 
