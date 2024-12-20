@@ -3,5 +3,6 @@
         <file>qml/lab2.qml</file>
         <file>qml/lab3.qml</file>
         <file>qml/lab4.qml</file>
+        <file>qml/lab1.qml</file>
     </qresource>
 </RCC>

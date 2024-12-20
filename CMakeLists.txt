@@ -19,14 +19,22 @@ set(COMMON_SOURCES
     resources.qrc
 )
 
-foreach(_target lab2 lab3 lab4)
+foreach(_target lab1 lab2 lab3 lab4)
     add_executable(${_target} "${_target}.cpp")
 
+    if(NOT _target STREQUAL "lab1")
+        target_sources(${_target} PRIVATE
+            ${COMMON_SOURCES}
+        )
+endif()
+
+if(_target STREQUAL "lab1")
     target_sources(${_target} PRIVATE
-        ${COMMON_SOURCES}
+        resources.qrc
+        rectangle.h rectangle.cpp
     )
 
-if(_target STREQUAL "lab2")
+elseif(_target STREQUAL "lab2")
     target_sources(${_target} PRIVATE
         Pencil.h Pencil.cpp
     )
@@ -35,12 +43,12 @@ elseif(_target STREQUAL "lab3")
     target_sources(${_target} PRIVATE
         Pencil.h Pencil.cpp
         Facets.h Facets.cpp
-)
+    )
 
 elseif(_target STREQUAL "lab4")
     target_sources(${_target} PRIVATE
         Surface.h Surface.cpp
-)
+    )
 endif()
 
 target_link_libraries(${_target}
